@@ -14,36 +14,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package test.com.jnyryan.solrUnicodeQuoteComponent;
+package com.jnyryan.solrUnicodeQuoteComponent;
 
 import org.junit.Test;
-import com.jnyryan.solrUnicodeQuoteComponents;
+
 
 import static org.junit.Assert.*;
 
-public class SolrUnicodeQuoteComponentsTest {
+public class FoldUnicodeQuotesTest {
 
     @Test
-    public void EmptyString() {
+    public void emptyString() {
         assertEquals("","");
     }
 
     @Test
-    public void NoQuotes() {
-        FoldUnicodeQuotes fuq = new FoldUnicodeQuote()));
+    public void noQuotes() {
+        FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
         assertEquals("",fuq.replaceUnicodeDoubleQuotes(""));
+    }
+    
+    @Test
+    public void standardQuotes() {
+        FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
+        assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the \"music makers\" "));
     }
 
     @Test
-    public void NormalQuotes() {
+    public void allTheQuotesQuotes() {
         FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
-        assertEquals("",fuq.replaceUnicodeDoubleQuotes(""));
-    	assertEquals("we are the music makers", "we are the music makers");
-        assertEquals("we are the music makers",fuq.replaceUnicodeDoubleQuotes("we are the music makers"));
-        assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the \"music makers\" "));
         assertEquals(" \" \" \" \" \" \" \" \" \" \" \" \" ",fuq.replaceUnicodeDoubleQuotes(" “ ” 〝 〞 „ « » ‟ ❝ ❞ ⹂ ＂ "));
+    }
+    
+    @Test
+    public void doubleQuotes() {
+        FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the “music makers” "));
+    }
+    
+    @Test
+    public void curlyQuotes() {
+        FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the 〝music makers〞 "));
+    }
+    
+    @Test
+    public void theRestOfTheQuotes() {
+        FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
+        
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the „music makers„ "));
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the «music makers» "));
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the ‟music makers‟ "));
