@@ -1,5 +1,21 @@
 # Solr Unicode Quote Component
 
+A search component that can be added to request handlers to manage quotes before the tokeniser and analyser stage.
+
+The following are folded to a staight quote " (\u0022)
+   *  “ left double quotation mark (\u201C)
+   *  ” right double quotation mark (\u201D)
+   * 〝 left curly quote (\u301D)
+   *  〞right curly quote (\u301E)
+   *  „ index quote german scandanavian (\u201E)
+   *  « left-pointing double angle quotation mark (\AB)
+   *  » right-pointing double angle quotation mark (\BB)
+   *  ‟ double high-reversed-9 quotation mark (\u201F)
+   *  ❝ heavy double turned comma quotation mark ornament (\u275D)
+   *  ❞ heavy double comma quotation mark ornament (\u275E)
+   *  ⹂ double low-reversed-9 quotation mark - (\u2E42)
+   *  ＂fullwidth quotation mark - (\uFF02)
+   
 ## Usage
 
 Edit the `solrconfig.xml` of the core you want to enable the component for
@@ -41,15 +57,15 @@ e.g.
 
 ## Build
 
-```
-ant compile
-ant jar
-ant run
-```
+	```
+	ant compile
+	ant jar
+	ant run
+	```
 
-##Test
+## Test
 
 
-``` bash
-ant test
-```
+	``` bash
+	ant test
+	```

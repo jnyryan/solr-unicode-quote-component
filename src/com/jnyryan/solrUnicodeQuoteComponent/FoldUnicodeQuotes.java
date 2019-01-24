@@ -59,18 +59,18 @@ public class FoldUnicodeQuotes extends SearchComponent {
   /**
    * Replace UNICODE double quotes with basic Latin standard quote mark (") - &#34; &quot;
    * Replaces:
-   *  “ left double quotation mark (%u201C)
-   *  ” right double quotation mark (%u201D)
-   * 〝 left curly quote (%u301D)
-   *  〞right curly quote (%u301E)
-   *  „ index quote german scandanavian (%u201E)
-   *  « left-pointing double angle quotation mark (%AB)
-   *  » right-pointing double angle quotation mark (%BB)
-   *  ‟ double high-reversed-9 quotation mark (%u201F)
-   *  ❝ heavy double turned comma quotation mark ornament (%u275D)
-   *  ❞ heavy double comma quotation mark ornament (%u275E)
-   *  ⹂ double low-reversed-9 quotation mark - (%u2E42)
-   *  ＂fullwidth quotation mark - (%uFF02)
+   *  “ left double quotation mark (\u201C)
+   *  ” right double quotation mark (\u201D)
+   * 〝 left curly quote (\u301D)
+   *  〞right curly quote (\u301E)
+   *  „ index quote german scandanavian (\u201E)
+   *  « left-pointing double angle quotation mark (\AB)
+   *  » right-pointing double angle quotation mark (\BB)
+   *  ‟ double high-reversed-9 quotation mark (\u201F)
+   *  ❝ heavy double turned comma quotation mark ornament (\u275D)
+   *  ❞ heavy double comma quotation mark ornament (\u275E)
+   *  ⹂ double low-reversed-9 quotation mark - (\u2E42)
+   *  ＂fullwidth quotation mark - (\uFF02)
    *
    * @param s The query string
    * @return Returns {@code s} with UNICODE double quotes replaced as standard double quote
