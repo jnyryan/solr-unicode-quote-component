@@ -11,12 +11,12 @@ The classpath to your component folder
 	``` xml
 	<lib dir="${solr.install.dir:../../../..}/dist/" regex="unicode-quote-component-\d.*\.jar" />
 	```
-	
+
 Register the custom component
 	``` xml
 	<searchComponent name="unicodeQuoteComponent" class="com.jnyryan.solr.components.FoldUnicodeQuotes"/>
 	```
-	
+
 In the request handler add the component as a first-component
 ``` xml
     <arr name="first-components">
@@ -46,4 +46,12 @@ e.g.
 solr create_core -c testCore1 -d sample_techproducts_configs
 
 post -c testCore1 /usr/local/opt/solr-7.3.1/example/exampledocs/*
+```
+
+## Build
+
+```
+ant compile
+ant jar
+ant run
 ```
