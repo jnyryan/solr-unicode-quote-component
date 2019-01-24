@@ -39,19 +39,17 @@ e.g.
   </requestHandler>
 ```
 
-
-##Test
-
-``` bash
-solr create_core -c testCore1 -d sample_techproducts_configs
-
-post -c testCore1 /usr/local/opt/solr-7.3.1/example/exampledocs/*
-```
-
 ## Build
 
 ```
 ant compile
 ant jar
 ant run
+```
+
+##Test
+
+
+``` bash
+ant test
 ```

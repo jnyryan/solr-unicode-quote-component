@@ -1,15 +1,18 @@
 <project name="solr-unicode-quote-component" basedir=".">
 
     <property name="src.dir"     value="src"/>
+    <property name="test.dir"    value="test"/>
     <property name="build.dir"   value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
-    <property name="main-class"  value="com.jnyryan.solr.components.SolrUnicodeQuoteComponent"/>
+    <property name="main-class"  value="com.jnyryan.solrUnicodeQuoteComponent"/>
     <property name="lib.dir"     value="lib"/>
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
+
+    <path id="application" location="${jar.dir}/${ant.project.name}.jar"/>
 
     <target name="clean">
         <delete dir="${build.dir}"/>
@@ -35,5 +38,17 @@
 
     <target name="clean-build" depends="clean,jar"/>
 
+    <target name="test" depends="jar">
+      <junit printsummary="yes">
+          <classpath>
+              <path refid="classpath"/>
+              <path refid="application"/>
+          </classpath>
+
+          <batchtest fork="yes">
+              <fileset dir="${test.dir}" includes="**/*Test.java"/>
+          </batchtest>
+      </junit>
+  </target>
 
 </project>

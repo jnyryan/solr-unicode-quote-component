@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.jnyryan.solr.components;
+package com.jnyryan.solrUnicodeQuoteComponent;
 
 import java.io.IOException;
 import org.apache.solr.common.params.CommonParams;
@@ -41,24 +41,24 @@ public class FoldUnicodeQuotes extends SearchComponent {
     System.out.println("I am getting my description inline");
     return null;
   }
-  
+
   /**
-   * Grab the Q and Q.ALT parameters and remove UNICODE quotes from them. 
-   * 
+   * Grab the Q and Q.ALT parameters and remove UNICODE quotes from them.
+   *
    * @param req the request to the SOlr handler
    */
   public void updateSolrRequest(SolrQueryRequest req) {
     SolrParams params = req.getParams();
-    String newQuery = replaceUnicodeDoubleQuotes(params.get(CommonParams.Q)).toString();
+    String newQuery = replaceUnicodeDoubleQuotes(params.get(CommonParams.Q));
     ModifiableSolrParams newParams = new ModifiableSolrParams(params);
     newParams.remove(CommonParams.Q);
     newParams.add(CommonParams.Q, newQuery);
     req.setParams(newParams);
   }
-  
+
   /**
    * Replace UNICODE double quotes with basic Latin standard quote mark (") - &#34; &quot;
-   * Replaces: 
+   * Replaces:
    *  “ left double quotation mark (%u201C)
    *  ” right double quotation mark (%u201D)
    * 〝 left curly quote (%u301D)
@@ -71,12 +71,12 @@ public class FoldUnicodeQuotes extends SearchComponent {
    *  ❞ heavy double comma quotation mark ornament (%u275E)
    *  ⹂ double low-reversed-9 quotation mark - (%u2E42)
    *  ＂fullwidth quotation mark - (%uFF02)
-   *  
+   *
    * @param s The query string
    * @return Returns {@code s} with UNICODE double quotes replaced as standard double quote
    */
-  public CharSequence replaceUnicodeDoubleQuotes(CharSequence s) {
-    return s.toString().replaceAll("[“”〝〞„«»‟❝❞⹂＂]","\"");
+  public String replaceUnicodeDoubleQuotes(String s) {
+    return s.replaceAll("[“”〝〞„«»‟❝❞⹂＂]","\"");
   }
 
 }
