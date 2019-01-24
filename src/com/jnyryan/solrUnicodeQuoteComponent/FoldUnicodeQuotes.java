@@ -45,7 +45,7 @@ public class FoldUnicodeQuotes extends SearchComponent {
   /**
    * Grab the Q and Q.ALT parameters and remove UNICODE quotes from them.
    *
-   * @param req the request to the SOlr handler
+   * @param req the request to the SOLR handler
    */
   public void updateSolrRequest(SolrQueryRequest req) {
     SolrParams params = req.getParams();

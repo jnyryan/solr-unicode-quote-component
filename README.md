@@ -2,6 +2,14 @@
 
 A search component that can be added to request handlers to manage quotes before the tokeniser and analyser stage.
 
+In other word - curly quotes - a way to remap them to standard quotes.
+
+The following requests will behave the same:
+
+- http://localhost:8983/solr/temp1/select?q="A Song of Ice and Fire"
+- http://localhost:8983/solr/temp1/select?q=“A Song of Ice and Fire”
+- http://localhost:8983/solr/temp1/select?q=«A Song of Ice and Fire»
+
 The following are folded to a staight quote " (\u0022)
    *  “ left double quotation mark (\u201C)
    *  ” right double quotation mark (\u201D)
@@ -15,8 +23,25 @@ The following are folded to a staight quote " (\u0022)
    *  ❞ heavy double comma quotation mark ornament (\u275E)
    *  ⹂ double low-reversed-9 quotation mark - (\u2E42)
    *  ＂fullwidth quotation mark - (\uFF02)
-   
+
+## Development Build
+
+``` bash
+  ant compile
+  ant jar
+  ant run
+```
+
+## Development Test
+
+
+``` bash
+  ant test
+```
+
 ## Usage
+
+Copy the `unicode-quote-component-X.X.jar` file to the location of your components
 
 Edit the `solrconfig.xml` of the core you want to enable the component for
 
@@ -24,9 +49,9 @@ Add the following to that file
 
 The classpath to your component folder
 
-	``` xml
-	<lib dir="${solr.install.dir:../../../..}/dist/" regex="unicode-quote-component-\d.*\.jar" />
-	```
+``` xml
+  <lib dir="${solr.install.dir:../../../..}/dist/" regex="unicode-quote-component-\d.*\.jar" />
+```
 
 Register the custom component
 	``` xml
@@ -35,9 +60,9 @@ Register the custom component
 
 In the request handler add the component as a first-component
 ``` xml
-    <arr name="first-components">
-      <str>unicodeQuoteComponent</str>
-    </arr>
+  <arr name="first-components">
+    <str>unicodeQuoteComponent</str>
+  </arr>
 ```
 
 e.g.
@@ -55,17 +80,26 @@ e.g.
   </requestHandler>
 ```
 
-## Build
+## Test it yourself
 
-	```
-	ant compile
-	ant jar
-	ant run
-	```
+Download and install [SOLR](https://lucene.apache.org/solr/guide/7_6/installing-solr.html) or build it yourself from [source](https://github.com/apache/lucene-solr)
 
-## Test
+``` bash
+solr create_core -c techproducts -d sample_techproducts_configs
+post -c techproducts /usr/local/opt/solr-7.3.1/example/exampledocs/*
+```
+
+## Development Build
+
+``` bash
+  ant compile
+  ant jar
+  ant run
+```
+
+## Development Test
 
 
-	``` bash
-	ant test
-	```
+``` bash
+  ant test
+```
