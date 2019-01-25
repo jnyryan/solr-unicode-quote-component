@@ -33,7 +33,7 @@ public class FoldUnicodeQuotesTest {
         FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
         assertEquals("",fuq.replaceUnicodeDoubleQuotes(""));
     }
-    
+
     @Test
     public void standardQuotes() {
         FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
@@ -45,23 +45,23 @@ public class FoldUnicodeQuotesTest {
         FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
         assertEquals(" \" \" \" \" \" \" \" \" \" \" \" \" ",fuq.replaceUnicodeDoubleQuotes(" “ ” 〝 〞 „ « » ‟ ❝ ❞ ⹂ ＂ "));
     }
-    
+
     @Test
     public void doubleQuotes() {
         FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the “music makers” "));
     }
-    
+
     @Test
     public void curlyQuotes() {
         FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the 〝music makers〞 "));
     }
-    
+
     @Test
     public void theRestOfTheQuotes() {
         FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
-        
+
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the „music makers„ "));
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the «music makers» "));
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the ‟music makers‟ "));
@@ -69,4 +69,5 @@ public class FoldUnicodeQuotesTest {
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the ⹂music makers⹂ "));
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the ＂music makers＂ "));
     }
+
 }

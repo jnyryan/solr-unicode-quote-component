@@ -33,13 +33,11 @@ public class FoldUnicodeQuotes extends SearchComponent {
 
   @Override
   public void process(ResponseBuilder rb) throws IOException {
-    System.out.println("I am processing inline");
   }
 
   @Override
   public String getDescription() {
-    System.out.println("I am getting my description inline");
-    return null;
+    return "Solr Unicode Quote Seqarch Component";
   }
 
   /**
@@ -47,7 +45,7 @@ public class FoldUnicodeQuotes extends SearchComponent {
    *
    * @param req the request to the SOLR handler
    */
-  public void updateSolrRequest(SolrQueryRequest req) {
+  public void updateSolrRequest(SolrQueryRequest req) {	  
     SolrParams params = req.getParams();
     String newQuery = replaceUnicodeDoubleQuotes(params.get(CommonParams.Q));
     ModifiableSolrParams newParams = new ModifiableSolrParams(params);
