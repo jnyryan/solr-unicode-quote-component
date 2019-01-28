@@ -26,7 +26,7 @@
 
     <target name="compile">
         <mkdir dir="${classes.dir}"/>
-        <javac target="${java.target}" includeantruntime="false" destdir="${classes.dir}" classpathref="classpath">
+        <javac target="${java.target}" source='${java.target}' includeantruntime="false" destdir="${classes.dir}" classpathref="classpath">
             <src path="${src.dir}"/>
             <src path="${test.dir}"/>
         </javac>
@@ -45,7 +45,7 @@
                 <attribute name="Implementation-Version" value="1.0.0" />
                 <attribute name="Implementation-Vendor"  value="GLG" />
                 <attribute name="Main-Class" value="${main-class}"/>
-                <attribute name="Class-Path" value="/Users/j/code/solr-unicode-quote-component/lib"/>
+                <attribute name="Java-Target-Version" value="${java.target}"/>
 
             </manifest>
         </jar>

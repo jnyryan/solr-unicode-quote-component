@@ -29,7 +29,6 @@ The following are folded to a staight quote " (\u0022)
 ``` bash
   ant compile
   ant jar
-  ant run
 ```
 
 ## Development Test
@@ -75,7 +74,6 @@ e.g.
     </lst>
     <arr name="first-components">
       <str>unicodeQuoteComponent</str>
-      <!-- <str>unicodeQuoteComponentJar</str> -->
     </arr>
   </requestHandler>
 ```
@@ -91,15 +89,15 @@ post -c techproducts /usr/local/opt/solr-7.3.1/example/exampledocs/*
 
 ## Development Build
 
-``` bash
-  ant compile
-  ant jar
-  ant run
-```
+Things to note:
 
-## Development Test
+- Make sure the component folder is correct, a WARNING may be issued by SOLR if the files cannot be located
+- Check the Java Target Version
+  - unzip the jar manifest to see the target version
+  `unzip -q -c dist/jar/solr-unicode-quote-component-7.5.jar META-INF/MANIFEST.MF`
 
+  todo
+   1. check classpath with clean build
+   2.
 
-``` bash
-  ant test
-```
+   cp dist/jar/solr-unicode-quote-component-7.5.jar ~/git/lucene-solr/solr/dist
