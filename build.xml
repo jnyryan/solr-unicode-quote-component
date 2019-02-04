@@ -1,6 +1,7 @@
 <project name="solr-unicode-quote-component" basedir=".">
 
-    <property name="src.dir"     value="src"/>
+	<property name="version"     value="1.0.1"/>
+	<property name="src.dir"     value="src"/>
     <property name="test.dir"    value="test"/>
     <property name="dist.dir"    value="dist"/>
     <property name="build.dir"   value="build"/>
@@ -41,9 +42,9 @@
                 <attribute name="Specification-Title"    value="Apache Solr Search Server: solr-unicode-quote-component" />
                 <attribute name="Specification-Version"  value="${solr.version}" />
                 <attribute name="Specification-Vendor"   value="The Apache Software Foundation" />
-                <attribute name="Implementation-Title"   value="org.apache.solr" />
-                <attribute name="Implementation-Version" value="1.0.0" />
-                <attribute name="Implementation-Vendor"  value="GLG" />
+                <attribute name="Implementation-Title"   value="com.jnyryan.solrUnicodeQuoteComponent" />
+                <attribute name="Implementation-Version" value="${version}" />
+                <attribute name="Implementation-Vendor"  value="jnyryan" />
                 <attribute name="Main-Class" value="${main-class}"/>
                 <attribute name="Java-Target-Version" value="${java.target}"/>
 
