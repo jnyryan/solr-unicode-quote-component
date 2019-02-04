@@ -20,15 +20,25 @@ import java.io.IOException;
 import org.apache.solr.common.params.CommonParams;
 import org.apache.solr.common.params.ModifiableSolrParams;
 import org.apache.solr.common.params.SolrParams;
+import org.apache.solr.common.util.NamedList;
+import org.apache.solr.common.util.SimpleOrderedMap;
 import org.apache.solr.handler.component.ResponseBuilder;
 import org.apache.solr.handler.component.SearchComponent;
 import org.apache.solr.request.SolrQueryRequest;
 
 public class FoldUnicodeQuotes extends SearchComponent {
 
+  // Monitoring Statistics
+  volatile long numRequests;
+  volatile long numErrors;
+  volatile long totalTime;
+  
   @Override
   public void prepare(ResponseBuilder rb) throws IOException {
+	numRequests++;
+	long startTime = System.currentTimeMillis();
     updateSolrRequest(rb.req);
+    totalTime += System.currentTimeMillis() - startTime;
   }
 
   @Override
@@ -40,18 +50,26 @@ public class FoldUnicodeQuotes extends SearchComponent {
     return "Solr Unicode Quote Seqarch Component";
   }
 
+  public NamedList<Object> getStatistics() {
+    NamedList<Object> stats = new SimpleOrderedMap<Object>();
+    stats.add("requests", String.valueOf(numRequests));
+    stats.add("errors", String.valueOf(numErrors));
+    stats.add("totalRequestsTime(ms)", String.valueOf(totalTime));
+    return stats;
+  }
+  
   /**
    * Grab the Q and Q.ALT parameters and remove UNICODE quotes from them.
    *
    * @param req the request to the SOLR handler
    */
   public void updateSolrRequest(SolrQueryRequest req) {	  
-    SolrParams params = req.getParams();
-    String newQuery = replaceUnicodeDoubleQuotes(params.get(CommonParams.Q));
-    ModifiableSolrParams newParams = new ModifiableSolrParams(params);
-    newParams.remove(CommonParams.Q);
-    newParams.add(CommonParams.Q, newQuery);
-    req.setParams(newParams);
+	  SolrParams params = req.getParams();
+	  String newQuery = replaceUnicodeDoubleQuotes(params.get(CommonParams.Q));
+	  ModifiableSolrParams newParams = new ModifiableSolrParams(params);
+	  newParams.remove(CommonParams.Q);
+	  newParams.add(CommonParams.Q, newQuery);
+	  req.setParams(newParams);
   }
 
   /**

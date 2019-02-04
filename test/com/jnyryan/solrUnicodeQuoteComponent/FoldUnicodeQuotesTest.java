@@ -20,6 +20,7 @@ import org.junit.Test;
 
 
 import static org.junit.Assert.*;
+import org.apache.solr.common.util.NamedList;
 
 public class FoldUnicodeQuotesTest {
 
@@ -68,6 +69,13 @@ public class FoldUnicodeQuotesTest {
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the ❝music makers❞ "));
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the ⹂music makers⹂ "));
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the ＂music makers＂ "));
+    }
+    
+    @Test
+    public void getStatistics() {
+        FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
+        NamedList<Object> results = fuq.getStatistics();
+        assertEquals("0", results.get("requests"));
     }
 
 }
