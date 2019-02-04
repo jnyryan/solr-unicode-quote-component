@@ -53,9 +53,9 @@ The classpath to your component folder
 ```
 
 Register the custom component
-	``` xml
-	<searchComponent name="unicodeQuoteComponent" class="com.jnyryan.solr.components.FoldUnicodeQuotes"/>
-	```
+``` xml
+	<searchComponent name="unicodeQuoteComponent" class="com.jnyryan.solrUnicodeQuoteComponent.FoldUnicodeQuotes"/>
+```
 
 In the request handler add the component as a first-component
 ``` xml

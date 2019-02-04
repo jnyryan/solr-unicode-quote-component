@@ -61,7 +61,6 @@ public class FoldUnicodeQuotesTest {
     @Test
     public void theRestOfTheQuotes() {
         FoldUnicodeQuotes fuq = new FoldUnicodeQuotes();
-
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the „music makers„ "));
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the «music makers» "));
         assertEquals("we are the \"music makers\" ",fuq.replaceUnicodeDoubleQuotes("we are the ‟music makers‟ "));
