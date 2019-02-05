@@ -37,7 +37,7 @@ public class FoldUnicodeQuotes extends SearchComponent {
 
     @Override
     public String getDescription() {
-        return "Solr Unicode Quote Seqarch Component";
+        return "Solr Unicode Quote Search Component";
     }
 
     /**
