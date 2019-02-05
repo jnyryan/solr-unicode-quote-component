@@ -90,6 +90,17 @@ The jar is placed in the ./dist folder. use it wisely
   ant test
 ```
 
+#### Setting up Eclipse Dev Environment
+
+If you have built lucene-solr locally and are running in debug in Eclipse, create test cores as follows.
+
+``` bash
+touch ./eclipse-build/solr-server/solr/techproducts/core.properties
+mkdir ./eclipse-build/solr-server/solr/techproducts
+cp -r ./eclipse-build/solr-server/solr/configsets/sample_techproducts_configs/ ./eclipse-build/solr-server/solr/techproducts
+solr/bin/post -p 8983 -c techproducts solr/example/exampledocs/*
+```
+
 ## Troubleshooting the Build
 
 Things to note:
