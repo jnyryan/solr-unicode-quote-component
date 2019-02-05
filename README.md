@@ -24,40 +24,27 @@ The following are folded to a staight quote " (\u0022)
    *  ⹂ double low-reversed-9 quotation mark - (\u2E42)
    *  ＂fullwidth quotation mark - (\uFF02)
 
-## Development Build
-
-``` bash
-  ant compile
-  ant jar
-```
-
-## Development Test
-
-
-``` bash
-  ant test
-```
-
 ## Usage
 
-Copy the `unicode-quote-component-X.X.jar` file to the location of your components
+Download latest JAR at time of writing [here](https://github.com/jnyryan/solr-unicode-quote-component/releases/download/v1.0.2/solr-unicode-quote-component-7.5.jar)
 
-Edit the `solrconfig.xml` of the core you want to enable the component for
+Copy the `unicode-quote-component-X.X.jar` file from the to the location of your components
 
-Add the following to that file
-
-The classpath to your component folder
+Add the following the `solrconfig.xml` for the core you want to use the component
 
 ``` xml
+  <!--adding the classpath of the unicode-quote-component-->
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="unicode-quote-component-\d.*\.jar" />
 ```
 
-Register the custom component
+
 ``` xml
-	<searchComponent name="unicodeQuoteComponent" class="com.jnyryan.solrUnicodeQuoteComponent.FoldUnicodeQuotes"/>
+  <!--Register the custom component-->
+  <searchComponent name="unicodeQuoteComponent" class="com.jnyryan.solrUnicodeQuoteComponent.FoldUnicodeQuotes"/>
 ```
 
 In the request handler add the component as a first-component
+
 ``` xml
   <arr name="first-components">
     <str>unicodeQuoteComponent</str>
@@ -78,16 +65,32 @@ e.g.
   </requestHandler>
 ```
 
-## Test it yourself
+## Test it
 
-Download and install [SOLR](https://lucene.apache.org/solr/guide/7_6/installing-solr.html) or build it yourself from [source](https://github.com/apache/lucene-solr)
+After adding the plugin to the core (like the techproducts example), you can see these three requests will behave the same
+
+[no Quotes](http://localhost:8983/solr/techproducts/select?q=A Song of Ice and Fire)
+[standard Quotes](http://localhost:8983/solr/techproducts/select?q="A Song of Ice and Fire")
+[Curly Quotes](http://localhost:8983/solr/techproducts/select?q=“A Song of Ice and Fire”)
+
+## Development
+
+#### Build
 
 ``` bash
-solr create_core -c techproducts -d sample_techproducts_configs
-post -c techproducts /usr/local/opt/solr-7.3.1/example/exampledocs/*
+  ant compile
+  ant jar
 ```
 
-## Development Build
+The jar is placed in the ./dist folder. use it wisely
+
+#### Development Test
+
+``` bash
+  ant test
+```
+
+## Troubleshooting the Build
 
 Things to note:
 
