@@ -11,7 +11,7 @@
     <property name="lib.dir"      value="lib"/>
     <property name="solr.version" value="7.5"/>
     <property name="java.target"  value="1.6"/>
-    <property name="output.name"  value="${ant.project.name}-${solr.version}.jar"/>
+    <property name="output.name"  value="${ant.project.name}-${version}.jar"/>
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
